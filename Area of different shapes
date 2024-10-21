@@ -1,0 +1,47 @@
+import java.util.Scanner;
+abstract class Shape{
+double l,b,result;
+void PrintArea(){
+Scanner in = new Scanner(System.in);
+System.out.print("Enter the length of the shape\n");
+l=in.nextDouble();
+System.out.print("Enter the breadth of the shape/Enter 0 for a circle\n");
+b=in.nextDouble();
+}
+abstract void calc();
+}
+
+class Rectangle extends Shape{
+void calc(){
+result=l*b;
+System.out.println("The area of rectangle is"+result);
+}
+}
+
+class Triangle extends Shape{
+void calc(){
+result=0.5*l*b;
+System.out.println("The area of the triangle is"+result);
+}
+}
+
+class Circle extends Shape{
+void calc(){
+result=3.14*l*l;
+System.out.println("The area of the circle is"+result);
+}
+}
+
+class Main{
+public static void main(String args[]){
+Rectangle r = new Rectangle();
+r.PrintArea();
+r.calc();
+Triangle t= new Triangle();
+t.PrintArea();
+t.calc();
+Circle c= new Circle();
+c.PrintArea();
+c.calc();
+}
+}
