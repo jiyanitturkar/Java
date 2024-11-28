@@ -1,0 +1,55 @@
+//save the file name as Main
+//lab_no_7
+import java.util.Scanner;
+class WrongAge extends Exception {
+    public WrongAge(String message) {
+        super(message); // Pass message to the superclass (Exception)
+    }
+}
+class InputScanner {
+    public static Scanner s = new Scanner(System.in); // Scanner object for input
+}
+
+class Father extends InputScanner {
+    protected int fatherAge;
+    public Father() throws WrongAge {
+        System.out.print("Enter father's age: ");
+        fatherAge = s.nextInt();
+        if (fatherAge < 0) {
+            throw new WrongAge("Age cannot be negative");
+        }
+    }
+    public void display() {
+        System.out.println("Father's Age: " + fatherAge);
+    }
+}
+
+class Son extends Father {
+    private int sonAge;
+    public Son() throws WrongAge {
+        super();
+        System.out.print("Enter son's age: ");
+        sonAge = s.nextInt();
+        if (sonAge >= fatherAge) {
+            throw new WrongAge("Son's age cannot be greater than or equal to father's age");
+        }
+        else if (sonAge < 0) {
+            throw new WrongAge("Age cannot be negative");
+        }
+    }
+    public void display() {
+        System.out.println("Son's Age: " + sonAge);
+ 	System.out.println("Father's Age: " + fatherAge);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Son son = new Son();
+            son.display();  // This will display son's age
+           
+        } catch (WrongAge e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
